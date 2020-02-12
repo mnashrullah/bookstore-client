@@ -24,15 +24,15 @@ export class AppComponent {
     public router: Router
   ) {
     this.initializeApp();
-    this.presentLoading();
-    this.auth.login().then((isLoggedIn) => {
-      if (isLoggedIn) {
-        this.router.navigate(['/tabs/tab1']);
-      } else {
-        this.router.navigate(['/login']);
-      }
-      this.loader.dismiss();
-    });
+    // this.presentLoading();
+    // this.auth.login().then((isLoggedIn) => {
+    //   if (isLoggedIn) {
+    //     this.router.navigate(['/tabs/tab1']);
+    //   } else {
+    //     this.router.navigate(['/login']);
+    //   }
+    //   this.loader.dismiss();
+    // });
   }
   async presentLoading() {
     this.loader = await this.loadingCtrl.create({
