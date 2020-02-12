@@ -1,5 +1,7 @@
 {
   "name": "IonicStarterTabs",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

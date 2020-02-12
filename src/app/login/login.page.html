@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <img class="img-header" src="/assets/shapes.svg">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <p class="heading">
+    Login to Bookstore
+  </p>
+
+  <ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+  <ion-button expand="block">SIGN IN</ion-button>
+  <ion-button expand="block" fill="clear" [routerLink]="'/signup'">Sign up for an account?</ion-button>
+</ion-content>
