@@ -34,6 +34,7 @@ export class Tab2Page {
   }
 
   detail(book) {
-    this.router.navigate(['/book-detail/'+book.id]);
+    console.log('id: ' + book.id);
+    this.router.navigate(['/book-detail/' + book.id]);
   }
 }

@@ -8,20 +8,18 @@ import { BookService } from '../services/book.service';
   styleUrls: ['./book-detail.page.scss'],
 })
 export class BookDetailPage implements OnInit {
+  book: any = {};
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private bookService: BookService
-  ) { }
-
-  ngOnInit() {
+  ) {
     let bookId = this.activatedRoute.snapshot.paramMap.get('id');
     this.bookService.getBook(bookId).subscribe((response) => {
       console.log(response);
-      
+      this.book = response
     })
-
-
   }
+  ngOnInit() { }
 
 }

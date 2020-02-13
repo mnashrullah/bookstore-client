@@ -7,7 +7,11 @@ const routes: Routes = [
   { path: 'signup', loadChildren: () => import('./signup/signup.module').then(m => m.SignupPageModule) },
   { path: 'book-detail', loadChildren: () => import('./book-detail/book-detail.module').then(m => m.BookDetailPageModule) },
   { path: 'book-detail/', loadChildren: () => import('./book-detail/book-detail.module').then(m => m.BookDetailPageModule) },
-  { path: 'book-detail/:id', loadChildren: () => import('./book-detail/book-detail.module').then(m => m.BookDetailPageModule) }
+  { path: 'book-detail/:id', loadChildren: () => import('./book-detail/book-detail.module').then(m => m.BookDetailPageModule) },
+  {
+    path: 'book-add',
+    loadChildren: () => import('./book-add/book-add.module').then( m => m.BookAddPageModule)
+  }
 ];
 @NgModule({
   imports: [
