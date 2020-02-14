@@ -17,7 +17,8 @@ export class BookDetailPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private bookService: BookService,
     private router: Router
-  ) {
+  ) { }
+  getData() {
     this.bookId = this.activatedRoute.snapshot.paramMap.get('id');
     this.bookService.getBook(this.bookId).subscribe((response) => {
       this.book = response;
@@ -25,8 +26,13 @@ export class BookDetailPage implements OnInit {
       console.log(this.book)
     })
   }
-  goUpdate() {
+  goEdit() {
     this.router.navigate(['/book-edit/' + this.bookId])
   }
-  ngOnInit() { }
+  ngOnInit() { console.log('page 1 ngOnInit') }
+  ngOnDestroy() { console.log('page 1 ngOnDestroy') }
+  ionViewWillEnter() { console.log('page 1 ionViewWillEnter'); this.getData(); }
+  ionViewDidEnter() { console.log('page 1 ionViewDidEnter') }
+  ionViewWillLeave() { console.log('page 1 ionViewWillLeave') }
+  ionViewDidLeave() { console.log('page 1 ionViewDidLeave') }
 }

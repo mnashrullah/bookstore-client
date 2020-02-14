@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>Book Description</ion-title>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="goEdit()">
         <ion-icon name="create"> </ion-icon>
       </ion-button>
     </ion-buttons>
@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content>
-  
+
   <ion-card>
     <ion-card-header>
       <ion-card-title> {{book.title | uppercase}}</ion-card-title>

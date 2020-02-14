@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { Router } from '@angular/router';
-import { Book } from '../interface/book.interface';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-book-add',
@@ -9,24 +9,16 @@ import { Book } from '../interface/book.interface';
   styleUrls: ['./book-add.page.scss'],
 })
 export class BookAddPage implements OnInit {
-  book: Book = {
-    id: '',
-    title: '',
-    description: '',
-    images: '',
-    created_at: ''
-  }
-
-  constructor(private bookService: BookService, private router: Router) { }
+  book: any = {}
+  constructor(private bookService: BookService, private router: Router,
+    private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
-  submit(book) {
-    console.log(book)
-    console.log(this.book);
+  submit() {
     this.bookService.createBook(this.book).subscribe((response) => {
       console.log(response);
-      this.router.navigate(['/tabs/tab2']);
+      this.modalCtrl.dismiss();
     })
   }
 }

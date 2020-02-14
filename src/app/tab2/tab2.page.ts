@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { BookService } from '../services/book.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { BookAddPage } from '../book-add/book-add.page';
 
 @Component({
   selector: 'app-tab2',
@@ -8,27 +10,43 @@ import { Router } from '@angular/router';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  books: any;
+  books: any = [];
 
-  constructor(private bookService: BookService, private router: Router) {
-
-  }
-  getAll() {
+  constructor(
+    private bookService: BookService,
+    private router: Router,
+    private modalCtrl: ModalController) { }
+  getData() {
     this.bookService.getAllBooks().subscribe((response) => {
       this.books = response;
       console.log(response);
       console.log(this.books);
     });
   }
+  ngOnInit() { console.log('page 1 ngOnInit') }
+  ngOnDestroy() { console.log('page 1 ngOnDestroy') }
+  ionViewWillEnter() { console.log('page 1 ionViewWillEnter'); this.getData(); }
+  ionViewDidEnter() { console.log('page 1 ionViewDidEnter') }
+  ionViewWillLeave() { console.log('page 1 ionViewWillLeave') }
+  ionViewDidLeave() { console.log('page 1 ionViewDidLeave') }
 
-  ionViewWillEnter() {
-    this.getAll();
-  }
-  ionViewDidEnter() {
-    this.getAll();
+  // ngOnInit() { console.log('tab2 init') }
+  // ionView() { console.log('tab2 init') }
+  // ionViewWillEnter() { console.log('will'); this.getAll(); }
+  // ionViewWillLeave() { console.log('will'); this.getAll(); }
+  // ionViewDidLeave() { console.log('will'); this.getAll(); }
+  // ionViewDidEnter() { console.log('did'); this.getAll(); }
+  async goAdd() {
+    const modal = await this.modalCtrl.create({
+      component: BookAddPage
+    });
+    modal.onWillDismiss().then(() => {
+      this.getData();
+    });
+    return await modal.present();
   }
   doRefresh(event) {
-    this.getAll();
+    this.getData();
     setTimeout(() => {
       console.log('Async operation has ended');
       event.target.complete();
@@ -42,7 +60,8 @@ export class Tab2Page {
   delete(book) {
     this.bookService.deleteBook(book.id).subscribe((response) => {
       console.log(response);
-      this.getAll();
+      this.getData();
     });
   }
+
 }
