@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../services/book.service';
+import { mainUrl } from '../services/config';
+
 
 @Component({
   selector: 'app-book-detail',
@@ -9,17 +11,22 @@ import { BookService } from '../services/book.service';
 })
 export class BookDetailPage implements OnInit {
   book: any = {};
+  bookId = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private bookService: BookService
+    private bookService: BookService,
+    private router: Router
   ) {
-    let bookId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.bookService.getBook(bookId).subscribe((response) => {
-      console.log(response);
-      this.book = response
+    this.bookId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.bookService.getBook(this.bookId).subscribe((response) => {
+      this.book = response;
+      this.book.images = mainUrl + '/img/' + this.book.images;
+      console.log(this.book)
     })
   }
+  goUpdate() {
+    this.router.navigate(['/book-edit/' + this.bookId])
+  }
   ngOnInit() { }
-
 }

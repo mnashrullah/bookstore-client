@@ -1,19 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{book.title}}</ion-title>
     <ion-buttons>
       <ion-back-button slot="start" defaultHref="/tabs/tab2"> </ion-back-button>
+    </ion-buttons>
+    <ion-title>Book Description</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="create"> </ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
+  
   <ion-card>
+    <ion-card-header>
+      <ion-card-title> {{book.title | uppercase}}</ion-card-title>
+    </ion-card-header>
     <ion-card-content>
       <img src="{{book.images}}">
-      <ion-card-item>
-        <p>Description: {{book.description}}</p>
-      </ion-card-item>
+      <p>Description: {{book.description}}</p>
       <p>{{book.created_at | date}}</p>
     </ion-card-content>
   </ion-card>

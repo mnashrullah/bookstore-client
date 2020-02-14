@@ -24,7 +24,9 @@ export class Tab2Page {
   ionViewWillEnter() {
     this.getAll();
   }
-
+  ionViewDidEnter() {
+    this.getAll();
+  }
   doRefresh(event) {
     this.getAll();
     setTimeout(() => {
@@ -33,8 +35,14 @@ export class Tab2Page {
     }, 1000);
   }
 
-  detail(book) {
+  goDetail(book) {
     console.log('id: ' + book.id);
     this.router.navigate(['/book-detail/' + book.id]);
+  }
+  delete(book) {
+    this.bookService.deleteBook(book.id).subscribe((response) => {
+      console.log(response);
+      this.getAll();
+    });
   }
 }
