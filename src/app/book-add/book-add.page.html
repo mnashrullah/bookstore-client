@@ -1,9 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons>
-      <ion-back-button slot="start" defaultHref="/tabs/tab2"> </ion-back-button>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2"> </ion-back-button>
     </ion-buttons>
     <ion-title>Add New Book</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closePage()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

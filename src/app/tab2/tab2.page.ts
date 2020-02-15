@@ -23,19 +23,8 @@ export class Tab2Page {
       console.log(this.books);
     });
   }
-  ngOnInit() { console.log('page 1 ngOnInit') }
-  ngOnDestroy() { console.log('page 1 ngOnDestroy') }
   ionViewWillEnter() { console.log('page 1 ionViewWillEnter'); this.getData(); }
-  ionViewDidEnter() { console.log('page 1 ionViewDidEnter') }
-  ionViewWillLeave() { console.log('page 1 ionViewWillLeave') }
-  ionViewDidLeave() { console.log('page 1 ionViewDidLeave') }
 
-  // ngOnInit() { console.log('tab2 init') }
-  // ionView() { console.log('tab2 init') }
-  // ionViewWillEnter() { console.log('will'); this.getAll(); }
-  // ionViewWillLeave() { console.log('will'); this.getAll(); }
-  // ionViewDidLeave() { console.log('will'); this.getAll(); }
-  // ionViewDidEnter() { console.log('did'); this.getAll(); }
   async goAdd() {
     const modal = await this.modalCtrl.create({
       component: BookAddPage

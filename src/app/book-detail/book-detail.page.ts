@@ -29,10 +29,6 @@ export class BookDetailPage implements OnInit {
   goEdit() {
     this.router.navigate(['/book-edit/' + this.bookId])
   }
-  ngOnInit() { console.log('page 1 ngOnInit') }
-  ngOnDestroy() { console.log('page 1 ngOnDestroy') }
-  ionViewWillEnter() { console.log('page 1 ionViewWillEnter'); this.getData(); }
-  ionViewDidEnter() { console.log('page 1 ionViewDidEnter') }
-  ionViewWillLeave() { console.log('page 1 ionViewWillLeave') }
-  ionViewDidLeave() { console.log('page 1 ionViewDidLeave') }
+  ngOnInit() { }
+
 }

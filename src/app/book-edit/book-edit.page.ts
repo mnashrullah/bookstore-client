@@ -19,13 +19,6 @@ export class BookEditPage implements OnInit {
   }
   ngOnInit() { }
 
-  // ngOnInit() { console.log('page 1 ngOnInit') }
-  // ngOnDestroy() { console.log('page 1 ngOnDestroy') }
-  // ionViewWillEnter() { console.log('page 1 ionViewWillEnter') }
-  // ionViewDidEnter() { console.log('page 1 ionViewDidEnter') }
-  // ionViewWillLeave() { console.log('page 1 ionViewWillLeave') }
-  // ionViewDidLeave() { console.log('page 1 ionViewDidLeave') }
-
   getData() {
     this.bookId = this.activatedRoute.snapshot.paramMap.get('id');
     this.bookService.getBook(this.bookId).subscribe((response) => {
@@ -33,9 +26,10 @@ export class BookEditPage implements OnInit {
     });
   }
   update() {
-    this.bookService.updateBook(this.bookId, this.book).subscribe((response) => {
-      console.log(response);
-      this.router.navigate(['/book-detail/' + this.bookId]);
-    })
+    this.bookService.updateBook(
+      this.bookId, this.book).subscribe((response) => {
+        console.log(response);
+        this.router.navigate(['/book-detail/' + this.bookId]);
+      })
   }
 }

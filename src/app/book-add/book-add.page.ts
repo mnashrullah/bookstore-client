@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../services/book.service';
-import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -10,15 +9,16 @@ import { ModalController } from '@ionic/angular';
 })
 export class BookAddPage implements OnInit {
   book: any = {}
-  constructor(private bookService: BookService, private router: Router,
+  constructor(
+    private bookService: BookService,
     private modalCtrl: ModalController) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
   submit() {
     this.bookService.createBook(this.book).subscribe((response) => {
       console.log(response);
       this.modalCtrl.dismiss();
     })
   }
+  closePage() { this.modalCtrl.dismiss(); }
 }
