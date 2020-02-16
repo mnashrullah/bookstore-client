@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../services/book.service';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-book-edit',
@@ -14,7 +15,9 @@ export class BookEditPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private bookService: BookService,
-    private router: Router) {
+    private router: Router,
+    private utils: UtilsService
+  ) {
     this.getData();
   }
   ngOnInit() { }
@@ -29,7 +32,11 @@ export class BookEditPage implements OnInit {
     this.bookService.updateBook(
       this.bookId, this.book).subscribe((response) => {
         console.log(response);
+        this.utils.showToast('Berhasil dirubah');
         this.router.navigate(['/book-detail/' + this.bookId]);
-      })
+      }, (err) => {
+        console.log(JSON.stringify(err));
+        this.utils.showToast('Terjadi kesalahan');
+      });
   }
 }

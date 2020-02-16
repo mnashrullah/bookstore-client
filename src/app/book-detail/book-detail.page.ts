@@ -30,5 +30,7 @@ export class BookDetailPage implements OnInit {
     this.router.navigate(['/book-edit/' + this.bookId])
   }
   ngOnInit() { }
-
+  ionViewWillEnter() {
+    this.getData();
+  }
 }

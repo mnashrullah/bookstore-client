@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { BookAddPage } from '../book-add/book-add.page';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-tab2',
@@ -15,7 +16,9 @@ export class Tab2Page {
   constructor(
     private bookService: BookService,
     private router: Router,
-    private modalCtrl: ModalController) { }
+    private modalCtrl: ModalController,
+    private alertCtrl: AlertController,
+    private utils: UtilsService) { }
   getData() {
     this.bookService.getAllBooks().subscribe((response) => {
       this.books = response;
@@ -23,7 +26,9 @@ export class Tab2Page {
       console.log(this.books);
     });
   }
-  ionViewWillEnter() { console.log('page 1 ionViewWillEnter'); this.getData(); }
+  ionViewWillEnter() {
+    this.getData();
+  }
 
   async goAdd() {
     const modal = await this.modalCtrl.create({
@@ -37,20 +42,39 @@ export class Tab2Page {
   doRefresh(event) {
     this.getData();
     setTimeout(() => {
-      console.log('Async operation has ended');
       event.target.complete();
     }, 1000);
   }
-
   goDetail(book) {
     console.log('id: ' + book.id);
     this.router.navigate(['/book-detail/' + book.id]);
   }
-  delete(book) {
-    this.bookService.deleteBook(book.id).subscribe((response) => {
-      console.log(response);
-      this.getData();
+  async delete(book) {
+    const alert = await this.alertCtrl.create({
+      header: 'Konfirmasi!',
+      message: 'Apakah anda yakin akan menghapus buku <strong>' + book.title + '</strong>',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (lol) => {
+            console.log('cancel' + lol);
+          }
+        },
+        {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.bookService.deleteBook(book.id).subscribe((response) => {
+              console.log(response);
+              this.utils.showToast('Berhasil dihapus')
+              this.getData();
+            });
+          }
+        }
+      ]
     });
+    alert.present();
   }
-
 }

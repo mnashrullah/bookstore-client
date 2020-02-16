@@ -19,7 +19,7 @@
       <ion-card-title> {{book.title | uppercase}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <img src="{{book.images}}">
+      <img src="{{book.images}}" onError="this.src='/assets/placeholder.jpg'">
       <p>Description: {{book.description}}</p>
       <p>{{book.created_at | date}}</p>
     </ion-card-content>
