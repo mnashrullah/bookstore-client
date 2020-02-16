@@ -21,10 +21,14 @@ export class Tab2Page {
     private utils: UtilsService) { }
   getData() {
     this.bookService.getAllBooks().subscribe((response) => {
-      this.books = response;
       console.log(response);
-      console.log(this.books);
-    });
+      this.books = response;
+    },
+      (err) => {
+        this.books = [];
+        console.log(JSON.stringify(err));
+        this.utils.showToast('Terjadi kesalahan');
+      });
   }
   ionViewWillEnter() {
     this.getData();
@@ -66,11 +70,15 @@ export class Tab2Page {
           text: 'Okay',
           handler: () => {
             console.log('Confirm Okay');
-            this.bookService.deleteBook(book.id).subscribe((response) => {
-              console.log(response);
-              this.utils.showToast('Berhasil dihapus')
-              this.getData();
-            });
+            this.bookService.deleteBook(book.id)
+              .subscribe((response) => {
+                console.log(response);
+                this.utils.showToast('Berhasil dihapus')
+                this.getData();
+              }, (err) => {
+                console.log(JSON.stringify(err));
+                this.utils.showToast('Terjadi kesalahan');
+              });
           }
         }]
     });

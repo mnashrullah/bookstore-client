@@ -14,7 +14,12 @@ import { BookAddPage } from './book-add/book-add.page';
 @NgModule({
   declarations: [AppComponent, BookAddPage],
   entryComponents: [BookAddPage],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule],
   providers: [
     FormsModule, ReactiveFormsModule,
     StatusBar,
