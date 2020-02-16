@@ -1,3 +1,4 @@
+//src/app/services/book.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -6,9 +7,6 @@ import { mainUrl } from './config';
   providedIn: 'root'
 })
 export class BookService {
-  // mainUrl = 'https://hidden-earth-26826.herokuapp.com';
-
-
   constructor(private http: HttpClient) { }
   getAllBooks(): Observable<Object> {
     return this.http.get(mainUrl + '/api/books');
@@ -27,10 +25,11 @@ export class BookService {
       book)
   }
   deleteBook(id): Observable<Object> {
-    return this.http.delete(mainUrl + '/api/books/' + id)
+    return this.http.delete(
+      mainUrl + '/api/books/' + id)
   }
   deleteBooks(): Observable<Object> {
-    return this.http.delete(mainUrl + '/api/books/')
-
+    return this.http.delete(
+      mainUrl + '/api/books/')
   }
 }

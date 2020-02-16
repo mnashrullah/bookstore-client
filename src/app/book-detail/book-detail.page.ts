@@ -1,3 +1,4 @@
+//src/app/book-detail/book-detail.page.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../services/book.service';

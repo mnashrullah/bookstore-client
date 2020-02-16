@@ -1,14 +1,12 @@
+//src/app/services/util.service.ts
 import { Injectable } from '@angular/core';
-import { ToastController, AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
-
-  constructor(private toastCtrl: ToastController) {
-
-  }
+  constructor(private toastCtrl: ToastController) { }
   async showToast(message) {
     let toast = await this.toastCtrl.create({
       message: message,

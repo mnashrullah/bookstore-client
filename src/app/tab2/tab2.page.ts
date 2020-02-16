@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BookService } from '../services/book.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ModalController, AlertController } from '@ionic/angular';
 import { BookAddPage } from '../book-add/book-add.page';
 import { UtilsService } from '../services/utils.service';
@@ -72,8 +72,7 @@ export class Tab2Page {
               this.getData();
             });
           }
-        }
-      ]
+        }]
     });
     alert.present();
   }
