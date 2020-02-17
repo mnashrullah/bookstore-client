@@ -1,3 +1,4 @@
+//src/app/tab2/tab2.page.ts
 import { Component } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { Router } from '@angular/router';
@@ -20,10 +21,11 @@ export class Tab2Page {
     private alertCtrl: AlertController,
     private utils: UtilsService) { }
   getData() {
-    this.bookService.getAllBooks().subscribe((response) => {
-      console.log(response);
-      this.books = response;
-    },
+    this.bookService.getAllBooks().subscribe(
+      (response) => {
+        console.log(response);
+        this.books = response;
+      },
       (err) => {
         this.books = [];
         console.log(JSON.stringify(err));
@@ -33,7 +35,12 @@ export class Tab2Page {
   ionViewWillEnter() {
     this.getData();
   }
-
+  doRefresh(event) {
+    this.getData();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
+  }
   async goAdd() {
     const modal = await this.modalCtrl.create({
       component: BookAddPage
@@ -42,12 +49,6 @@ export class Tab2Page {
       this.getData();
     });
     return await modal.present();
-  }
-  doRefresh(event) {
-    this.getData();
-    setTimeout(() => {
-      event.target.complete();
-    }, 1000);
   }
   goDetail(book) {
     console.log('id: ' + book.id);
